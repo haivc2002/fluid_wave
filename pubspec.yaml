@@ -1,7 +1,9 @@
 name: fluid_wave
 description: "A new Flutter package project."
 version: 1.0.0
-homepage:
+homepage: "https://github.com/haivc2002/fluid_wave"
+repository: "https://github.com/haivc2002/fluid_wave"
+issue_tracker: "https://github.com/haivc2002/fluid_wave/issues"
 
 environment:
   sdk: ^3.9.2
