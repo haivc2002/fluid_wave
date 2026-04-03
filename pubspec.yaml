@@ -1,5 +1,5 @@
 name: fluid_wave
-description: "A new Flutter package project."
+description: "A premium Flutter package for creating smooth fluid reveal transitions and radial warp distortions using Shaders."
 version: 1.0.0
 homepage: "https://github.com/haivc2002/fluid_wave"
 repository: "https://github.com/haivc2002/fluid_wave"
