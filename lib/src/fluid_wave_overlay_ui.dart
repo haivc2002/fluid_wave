@@ -1,7 +1,6 @@
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 
-import 'fluid_wave_start_align.dart';
 import 'fluid_wave_painter.dart';
 
 /// An internal UI component displayed in the [Overlay] during transition.
@@ -19,7 +18,7 @@ class FluidWaveOverlayUI extends StatefulWidget {
   final VoidCallback onAnimationEnd;
 
   /// The alignment where the revealing wave originates.
-  final FluidWaveStartAlign align;
+  final Alignment align;
 
   /// The dimensions of the overlay area.
   final Size size;
@@ -94,29 +93,8 @@ class _FluidWaveOverlayUIState extends State<FluidWaveOverlayUI> with SingleTick
     }
   }
 
-  /// Calculates the wave origin pixel position based on [FluidWaveStartAlign].
-  Offset get resolveWaveCenter {
-    switch (widget.align) {
-      case FluidWaveStartAlign.topCenter:
-        return Offset(widget.size.width / 2, 0);
-      case FluidWaveStartAlign.bottomCenter:
-        return Offset(widget.size.width / 2, widget.size.height);
-      case FluidWaveStartAlign.centerLeft:
-        return Offset(0, widget.size.height / 2);
-      case FluidWaveStartAlign.centerRight:
-        return Offset(widget.size.width, widget.size.height / 2);
-      case FluidWaveStartAlign.center:
-        return Offset(widget.size.width / 2, widget.size.height / 2);
-      case FluidWaveStartAlign.topLeft:
-        return const Offset(0, 0);
-      case FluidWaveStartAlign.topRight:
-        return Offset(widget.size.width, 0);
-      case FluidWaveStartAlign.bottomLeft:
-        return Offset(0, widget.size.height);
-      case FluidWaveStartAlign.bottomRight:
-        return Offset(widget.size.width, widget.size.height);
-    }
-  }
+  /// Calculates the wave origin pixel position based on [Alignment].
+  Offset get resolveWaveCenter => widget.align.alongSize(widget.size);
 
   @override
   Widget build(BuildContext context) {

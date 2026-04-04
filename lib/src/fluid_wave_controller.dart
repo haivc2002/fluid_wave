@@ -3,7 +3,6 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import 'fluid_wave_start_align.dart';
 import 'warp_anim_values.dart';
 import 'fluid_wave_overlay_ui.dart';
 
@@ -14,7 +13,7 @@ import 'fluid_wave_overlay_ui.dart';
 /// and reveals the new widget state through an expanding circular wave.
 class FluidWaveController {
   /// The starting alignment of the fluid wave.
-  FluidWaveStartAlign align;
+  Alignment align;
 
   /// The duration of the transition animation.
   final Duration duration;
@@ -27,7 +26,7 @@ class FluidWaveController {
 
   /// Creates a [FluidWaveController] with optional configuration.
   FluidWaveController({
-    this.align = FluidWaveStartAlign.center,
+    this.align = Alignment.center,
     this.duration = const Duration(milliseconds: 800),
     this.curve = Curves.ease,
     this.warpStrength = 0.6,
@@ -53,11 +52,8 @@ class FluidWaveController {
   /// Triggers the wave transition effect.
   ///
   /// - [changeView]: A callback that should perform the actual UI state change (e.g. `setState`).
-  /// - [align]: The point where the wave will originate from. If null, uses the controller's [align].
-  /// - [curve]: The animation curve for the transition. If null, uses the controller's default [curve].
-  void forward(VoidCallback changeView, {FluidWaveStartAlign? align, Curve? curve}) async {
-    final effectiveCurve = curve ?? this.curve;
-    if (align != null) this.align = align;
+  void forward(VoidCallback changeView) async {
+    final effectiveCurve = curve;
     final ctx = _boundaryKey?.currentContext;
     if (ctx == null || _running) return;
     _running = true;

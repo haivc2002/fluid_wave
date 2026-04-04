@@ -1,7 +1,6 @@
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter_shaders/flutter_shaders.dart';
-import 'fluid_wave_start_align.dart';
 
 /// A widget that applies a real-time radial warp distortion to its [child].
 ///
@@ -16,7 +15,7 @@ import 'fluid_wave_start_align.dart';
 /// FluidWarpWidget(
 ///   strength: 0.15,
 ///   radius: 0.5,
-///   align: FluidWaveStartAlign.center,
+///   align: Alignment.center,
 ///   child: MyAnimatedWidget(),
 /// )
 /// ```
@@ -25,7 +24,7 @@ class FluidWarpWidget extends StatelessWidget {
   final Widget child;
 
   /// Determines the normalized center of the distortion.
-  final FluidWaveStartAlign align;
+  final Alignment align;
 
   /// The strength of the radial warp effect.
   final double strength;
@@ -40,34 +39,18 @@ class FluidWarpWidget extends StatelessWidget {
   const FluidWarpWidget({
     super.key,
     required this.child,
-    this.align = FluidWaveStartAlign.center,
+    this.align = Alignment.center,
     this.strength = 0.15,
     this.radius = 0.5,
     this.enabled = true,
   });
 
-  /// Maps [FluidWaveStartAlign] to normalized coordinates (0.0 to 1.0).
+  /// Maps [Alignment] to normalized coordinates (0.0 to 1.0).
   Offset _getNormalizedCenter() {
-    switch (align) {
-      case FluidWaveStartAlign.topCenter:
-        return const Offset(0.5, 0.0);
-      case FluidWaveStartAlign.bottomCenter:
-        return const Offset(0.5, 1.0);
-      case FluidWaveStartAlign.centerLeft:
-        return const Offset(0.0, 0.5);
-      case FluidWaveStartAlign.centerRight:
-        return const Offset(1.0, 0.5);
-      case FluidWaveStartAlign.center:
-        return const Offset(0.5, 0.5);
-      case FluidWaveStartAlign.topLeft:
-        return const Offset(0.0, 0.0);
-      case FluidWaveStartAlign.topRight:
-        return const Offset(1.0, 0.0);
-      case FluidWaveStartAlign.bottomLeft:
-        return const Offset(0.0, 1.0);
-      case FluidWaveStartAlign.bottomRight:
-        return const Offset(1.0, 1.0);
-    }
+    return Offset(
+      (align.x + 1.0) / 2.0,
+      (align.y + 1.0) / 2.0,
+    );
   }
 
   @override

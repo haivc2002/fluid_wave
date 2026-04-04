@@ -47,7 +47,7 @@ To ensure correct performance on Android devices, it is recommended to disable `
 
 ```dart
 final controller = FluidWaveController(
-  align: FluidWaveStartAlign.center,
+  align: Alignment.center,
   duration: const Duration(milliseconds: 1000),
   curve: Curves.easeInOutQuart,
   warpStrength: 0.6, // Supports negative values for inverted warp
